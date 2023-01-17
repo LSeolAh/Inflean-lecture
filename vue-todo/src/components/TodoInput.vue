@@ -16,9 +16,12 @@ export default {
   },
   methods: {
     addTodo: function () {
-      //local storage에 저장
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      this.clearInput();
+      if (this.newTodoItem !== "") {
+        var obj = { completed: false, item: this.newTodoItem };
+        //local storage에 저장
+        localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+        this.clearInput();
+      }
     },
     clearInput: function () {
       //저장 한 후 input box 초기화
