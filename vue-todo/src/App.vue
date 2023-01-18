@@ -7,7 +7,7 @@
       v-on:removeItem="removeOneItem"
       v-on:toggleItem="toggleOneItem"
     ></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoFooter v-on:clearAll="clearAllItems"></TodoFooter>
   </div>
 </template>
 
@@ -46,6 +46,10 @@ export default {
       // localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
       //index 사용안하면 오류 생겨서 해둔 오류 방지용
       console.log(index);
+    },
+    clearAllItems: function () {
+      localStorage.clear();
+      this.todoItems = [];
     },
   },
   created: function () {
