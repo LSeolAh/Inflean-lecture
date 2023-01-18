@@ -29,13 +29,8 @@ export default {
     removeTodo: function (todoItem, index) {
       this.$emit("removeItem", todoItem, index);
     },
-    toggleComplete: function (todoItem) {
-      todoItem.completed = !todoItem.completed;
-      //로컬스토리지에 데이터를 갱신하는 것
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-      // localStorage.removeItem(todoItem.item);
-      // localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
-      //index 사용안하면 오류 생겨서 해둔 오류 방지용
+    toggleComplete: function (todoItem, index) {
+      this.$emit("toggleItem", todoItem, index);
     },
   },
 };

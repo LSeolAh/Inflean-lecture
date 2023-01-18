@@ -5,6 +5,7 @@
     <TodoList
       v-bind:propsdata="todoItems"
       v-on:removeItem="removeOneItem"
+      v-on:toggleItem="toggleOneItem"
     ></TodoList>
     <TodoFooter></TodoFooter>
   </div>
@@ -32,6 +33,19 @@ export default {
     removeOneItem: function (todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
+    },
+    toggleOneItem: function (todoItem, index) {
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+      //위에 있는 코드와 같은 동작을 하지만
+      // 컴포넌트의 경계를 명확하게 하기 위해 위에 코드를 사용
+      // todoItem.completed = !todoItem.completed;
+
+      //로컬스토리지에 데이터를 갱신하는 것
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      // localStorage.removeItem(todoItem.item);
+      // localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
+      //index 사용안하면 오류 생겨서 해둔 오류 방지용
+      console.log(index);
     },
   },
   created: function () {
