@@ -18,23 +18,23 @@ import TodoInput from "./components/TodoInput.vue";
 import TodoList from "./components/TodoList.vue";
 
 export default {
-  data: function () {
+  data() {
     return {
       todoItems: [],
     };
   },
   methods: {
-    addOneItem: function (todoItem) {
+    addOneItem(todoItem) {
       const obj = { completed: false, item: todoItem };
       //local storage에 저장
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeOneItem: function (todoItem, index) {
+    removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
     },
-    toggleOneItem: function (todoItem, index) {
+    toggleOneItem(todoItem, index) {
       this.todoItems[index].completed = !this.todoItems[index].completed;
       //위에 있는 코드와 같은 동작을 하지만
       // 컴포넌트의 경계를 명확하게 하기 위해 위에 코드를 사용
@@ -47,12 +47,12 @@ export default {
       //index 사용안하면 오류 생겨서 해둔 오류 방지용
       console.log(index);
     },
-    clearAllItems: function () {
+    clearAllItems() {
       localStorage.clear();
       this.todoItems = [];
     },
   },
-  created: function () {
+  created() {
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
         if (localStorage.key(i) !== "loglevel:webpack-dev-server")
