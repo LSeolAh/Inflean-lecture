@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodoItem="addOneItem"></TodoInput>
+    <TodoInput></TodoInput>
     <TodoList
       v-bind:propsdata="todoItems"
       v-on:removeItem="removeOneItem"
@@ -24,12 +24,6 @@ export default {
     };
   },
   methods: {
-    addOneItem(todoItem) {
-      const obj = { completed: false, item: todoItem };
-      //local storage에 저장
-      localStorage.setItem(todoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
     removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);
@@ -52,19 +46,7 @@ export default {
       this.todoItems = [];
     },
   },
-  created() {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server")
-          this.todoItems.push(
-            JSON.parse(localStorage.getItem(localStorage.key(i)))
-          );
 
-        // this.todoItems.push(localStorage.key(i));
-        // console.log(localStorage.key(i));
-      }
-    }
-  },
   components: {
     TodoHeader,
     TodoInput,
