@@ -9,7 +9,7 @@
         <i
           class="checkBtn fa-solid fa-check"
           v-bind:class="{ checkBtnCompleted: todoItem.completed }"
-          v-on:click="toggleComplete(todoItem, index)"
+          v-on:click="toggleComplete({ todoItem, index })"
         ></i>
         <span v-bind:class="{ textCompleted: todoItem.completed }">{{
           todoItem.item
@@ -29,13 +29,8 @@ export default {
   methods: {
     ...mapMutations({
       removeTodo: "removeOneItem",
+      toggleComplete: "toggleOneItem",
     }),
-    removeTodo(todoItem, index) {
-      this.$store.commit("removeOneItem", { todoItem, index });
-    },
-    toggleComplete(todoItem, index) {
-      this.$store.commit("toggleOneItem", { todoItem, index });
-    },
   },
   computed: {
     ...mapGetters(["storedTodoItems"]),
