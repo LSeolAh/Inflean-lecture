@@ -14,7 +14,7 @@
         <span v-bind:class="{ textCompleted: todoItem.completed }">{{
           todoItem.item
         }}</span>
-        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+        <span class="removeBtn" v-on:click="removeTodo({ todoItem, index })">
           <i class="fa-solid fa-trash-can"></i>
         </span>
       </li>
@@ -23,9 +23,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   methods: {
+    ...mapMutations({
+      removeTodo: "removeOneItem",
+    }),
     removeTodo(todoItem, index) {
       this.$store.commit("removeOneItem", { todoItem, index });
     },
