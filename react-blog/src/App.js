@@ -14,10 +14,6 @@ function App() {
   ]);
   let [따봉, 따봉변경] = useState(0);
 
-  function func() {
-    console.log(1);
-  }
-
   return (
     <div className="App">
       <div className="black-nav">
@@ -29,7 +25,7 @@ function App() {
           글제목변경(sort);
         }}
       >
-        가나다순 정렬
+        정렬버튼
       </button>
       <button
         onClick={() => {
@@ -62,8 +58,28 @@ function App() {
         <h4>{글제목[2]}</h4>
         <p>8월 3일 발행</p>
       </div>
+      <Modal></Modal>
+      <Hi></Hi>
     </div>
   );
 }
+
+function Modal() {
+  return (
+    <div className="modal">
+      <h4>제목</h4>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  );
+}
+
+let Hi = () => {
+  return (
+    <div>
+      <p>졸리다</p>
+    </div>
+  );
+};
 
 export default App;
