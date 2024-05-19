@@ -1,31 +1,31 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { useState } from "react";
+import logo from './logo.svg';
+import './App.css';
+import { useState } from 'react';
 
 function App() {
-  let post = "강남 우동 맛집";
+  let post = '강남 우동 맛집';
   // let [글제목1, a] = useState("남자 코트 추천");
   // let [글제목2, b] = useState("강남 맛집 추천");
   // let [글제목3, c] = useState("파이썬 독학");
   let [글제목, 글제목변경] = useState([
-    "남자 코트 추천",
-    "강남 맛집 추천",
-    "파이썬 독학",
+    '남자 코트 추천',
+    '강남 맛집 추천',
+    '파이썬 독학',
   ]);
   let [따봉, 따봉변경] = useState([0, 0, 0]);
-  // let [modal, setModal] = useState([false, ""]);
+  // let [modal, setModal] = useState([false, ""]);h
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
-  let [입력값, 입력값변경] = useState("");
+  let [입력값, 입력값변경] = useState('');
 
   return (
-    <div className="App">
-      <div className="black-nav">
+    <div className='App'>
+      <div className='black-nav'>
         <h4>설라 블로그</h4>
       </div>
       {글제목.map(function (v, i) {
         return (
-          <div className="list" key={i}>
+          <div className='list' key={i}>
             <h4
               onClick={() => {
                 setModal([true, v]);
@@ -79,7 +79,7 @@ function App() {
       {modal[0] === true ? (
         // <Modal color={"yellow"} title= {title}글제목변경={글제목변경} 글제목={modal[1]} />
         <Modal
-          color={"yellow"}
+          color={'yellow'}
           title={title}
           글제목변경={글제목변경}
           글제목={글제목}
@@ -91,7 +91,7 @@ function App() {
 
 function Modal(props) {
   return (
-    <div className="modal" style={{ background: props.color }}>
+    <div className='modal' style={{ background: props.color }}>
       {/* <h4>{props.글제목}</h4> */}
       <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
@@ -99,7 +99,7 @@ function Modal(props) {
       <button
         onClick={() => {
           let copy = [...props.글제목];
-          copy[0] = "여자코트추천";
+          copy[0] = '여자코트추천';
           props.글제목변경(copy);
         }}
       >
